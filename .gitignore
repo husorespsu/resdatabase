@@ -1,0 +1,23 @@
+# Environment
+.env
+
+# Composer
+vendor/
+composer.phar
+
+# Uploads (user files)
+public/uploads/avatars/
+public/uploads/proposals/
+
+# Storage / cache
+storage/logs/
+storage/cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp

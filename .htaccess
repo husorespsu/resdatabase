@@ -1,0 +1,107 @@
+# ============================================================
+# PSU Research Management System – Apache .htaccess
+# ============================================================
+
+# ── PHP Development Settings ────────────────────────────────
+php_flag  display_errors      On
+php_flag  display_startup_errors On
+php_value error_reporting     32767
+php_flag  log_errors           On
+php_value error_log            /Applications/XAMPP/xamppfiles/htdocs/research/storage/logs/error.log
+
+# ── Security Headers ────────────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options             "SAMEORIGIN"
+    Header always set X-XSS-Protection            "1; mode=block"
+    Header always set X-Content-Type-Options      "nosniff"
+    Header always set Referrer-Policy             "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy          "geolocation=(), microphone=(), camera=()"
+    Header always set Strict-Transport-Security   "max-age=31536000; includeSubDomains" env=HTTPS
+    # Remove server signature
+    Header always unset X-Powered-By
+    Header always unset Server
+</IfModule>
+
+# ── Block access to sensitive files and directories ─────────
+<FilesMatch "^\.env">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+<FilesMatch "\.(sql|log|sh|bak|swp|git)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Block direct access to protected directories
+RedirectMatch 403 ^/research/vendor(/|$)
+RedirectMatch 403 ^/research/app(/|$)
+RedirectMatch 403 ^/research/config(/|$)
+RedirectMatch 403 ^/research/cron(/|$)
+RedirectMatch 403 ^/research/database(/|$)
+RedirectMatch 403 ^/research/storage(/|$)
+
+# ── Disable directory listing ───────────────────────────────
+Options -Indexes
+
+# ── Mod Rewrite (Front Controller) ──────────────────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /research/
+
+    # Allow direct access to existing files in public/ directory
+    RewriteCond %{REQUEST_URI} ^/research/public/
+    RewriteRule ^ - [L]
+
+    # Allow direct access to real files and directories that exist
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Route everything else to index.php (front controller)
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# ── MIME Types ───────────────────────────────────────────────
+<IfModule mod_mime.c>
+    AddType application/javascript          .js
+    AddType text/css                        .css
+    AddType image/svg+xml                   .svg
+    AddType application/font-woff           .woff
+    AddType application/font-woff2          .woff2
+    AddType application/vnd.ms-fontobject   .eot
+    AddType application/x-font-ttf          .ttf
+    AddType application/pdf                 .pdf
+</IfModule>
+
+# ── Static Asset Caching ─────────────────────────────────────
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg                "access plus 1 month"
+    ExpiresByType image/png                 "access plus 1 month"
+    ExpiresByType image/gif                 "access plus 1 month"
+    ExpiresByType image/svg+xml             "access plus 1 month"
+    ExpiresByType text/css                  "access plus 1 week"
+    ExpiresByType application/javascript    "access plus 1 week"
+    ExpiresByType application/font-woff2    "access plus 1 year"
+</IfModule>
+
+# ── Compression ──────────────────────────────────────────────
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css
+    AddOutputFilterByType DEFLATE application/javascript application/json
+    AddOutputFilterByType DEFLATE image/svg+xml application/xml
+</IfModule>
+
+# ── Charset ──────────────────────────────────────────────────
+AddDefaultCharset UTF-8
