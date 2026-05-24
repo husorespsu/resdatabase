@@ -10,9 +10,9 @@ $coListJson = json_encode($proposal['co_investigators_list'] ?? [], JSON_UNESCAP
 
 <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/research/proposals">ข้อเสนอโครงการวิจัย</a></li>
+        <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/proposals">ข้อเสนอโครงการวิจัย</a></li>
         <li class="breadcrumb-item">
-            <a href="/research/proposals/<?= $proposal['id'] ?>">
+            <a href="<?= BASE_URL ?>/proposals/<?= $proposal['id'] ?>">
                 <?= htmlspecialchars($proposal['proposal_code'] ?? 'รายละเอียด') ?>
             </a>
         </li>
@@ -35,7 +35,7 @@ $coListJson = json_encode($proposal['co_investigators_list'] ?? [], JSON_UNESCAP
 </div>
 <?php endif; ?>
 
-<form method="POST" action="/research/proposals/<?= $proposal['id'] ?>/update"
+<form method="POST" action="<?= BASE_URL ?>/proposals/<?= $proposal['id'] ?>/update"
       enctype="multipart/form-data" id="editProposalForm" novalidate>
     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
 
@@ -264,7 +264,7 @@ $coListJson = json_encode($proposal['co_investigators_list'] ?? [], JSON_UNESCAP
                 <i class="bi bi-file-pdf fs-4 text-danger"></i>
                 <div class="flex-grow-1">
                     <strong>ไฟล์ปัจจุบัน:</strong>
-                    <a href="/research/uploads/<?= htmlspecialchars($proposal['attachment_path']) ?>"
+                    <a href="<?= BASE_URL ?>/uploads/<?= htmlspecialchars($proposal['attachment_path']) ?>"
                        target="_blank" class="ms-1">ดาวน์โหลดไฟล์เดิม</a>
                 </div>
             </div>
@@ -302,7 +302,7 @@ $coListJson = json_encode($proposal['co_investigators_list'] ?? [], JSON_UNESCAP
     ======================================================== -->
     <div class="card border-0 shadow-sm mb-5">
         <div class="card-body d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <a href="/research/proposals/<?= $proposal['id'] ?>" class="btn btn-outline-secondary">
+            <a href="<?= BASE_URL ?>/proposals/<?= $proposal['id'] ?>" class="btn btn-outline-secondary">
                 <i class="bi bi-arrow-left me-1"></i>ยกเลิก
             </a>
             <button type="submit" class="btn btn-psu-primary btn-lg px-5">
@@ -347,7 +347,7 @@ $(document).ready(function () {
             searching:     function() { return 'กำลังค้นหา...'; },
         },
         ajax: {
-            url: '/research/api/personnel/search',
+            url: '<?= BASE_URL ?>/api/personnel/search',
             dataType: 'json',
             delay: 200,
             data: function(params) { return { q: params.term }; },
@@ -406,7 +406,7 @@ $(document).ready(function () {
                 searching:     function() { return 'กำลังค้นหา...'; },
             },
             ajax: {
-                url: '/research/api/personnel/search',
+                url: '<?= BASE_URL ?>/api/personnel/search',
                 dataType: 'json',
                 delay: 200,
                 data: function(params) { return { q: params.term }; },

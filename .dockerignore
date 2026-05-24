@@ -1,0 +1,27 @@
+# Environment
+.env
+
+# Git
+.git
+.gitignore
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Composer binary (not needed, installed in image)
+composer.phar
+
+# Uploads (will be recreated via runtime)
+public/uploads/avatars/
+public/uploads/proposals/
+
+# Storage logs/cache
+storage/logs/
+storage/cache/
+
+# Dev scripts (not needed in production)
+scripts/

@@ -21,9 +21,9 @@ $reviewResultMap = [
 <!-- Breadcrumb -->
 <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/research/proposals">โครงการวิจัย</a></li>
+        <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/proposals">โครงการวิจัย</a></li>
         <li class="breadcrumb-item">
-            <a href="/research/proposals/<?= $proposal['id'] ?>"><?= htmlspecialchars($proposal['proposal_code']) ?></a>
+            <a href="<?= BASE_URL ?>/proposals/<?= $proposal['id'] ?>"><?= htmlspecialchars($proposal['proposal_code']) ?></a>
         </li>
         <li class="breadcrumb-item active">ผู้ทรงคุณวุฒิ</li>
     </ol>
@@ -135,7 +135,7 @@ $reviewResultMap = [
                         </td>
                         <td class="text-center">
                             <div class="btn-group btn-group-sm">
-                                <a href="/research/reviews/<?= $review['id'] ?>/invitation"
+                                <a href="<?= BASE_URL ?>/reviews/<?= $review['id'] ?>/invitation"
                                    class="btn btn-outline-primary" title="หนังสือเชิญ">
                                     <i class="fas fa-envelope"></i>
                                 </a>
@@ -170,7 +170,7 @@ $reviewResultMap = [
         </h6>
     </div>
     <div class="card-body">
-        <form method="POST" action="/research/proposals/<?= $proposal['id'] ?>/assign-reviewers">
+        <form method="POST" action="<?= BASE_URL ?>/proposals/<?= $proposal['id'] ?>/assign-reviewers">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
 
             <div class="mb-3">
@@ -214,7 +214,7 @@ $reviewResultMap = [
                 <button type="submit" class="btn text-white" style="background:#003B6D;">
                     <i class="fas fa-paper-plane me-1"></i>มอบหมาย
                 </button>
-                <a href="/research/proposals/<?= $proposal['id'] ?>" class="btn btn-outline-secondary">ยกเลิก</a>
+                <a href="<?= BASE_URL ?>/proposals/<?= $proposal['id'] ?>" class="btn btn-outline-secondary">ยกเลิก</a>
             </div>
         </form>
     </div>
@@ -378,7 +378,7 @@ $(document).ready(function () {
         $('#resultReviewerInfo').html(
             '<strong>' + (r.reviewer_full_name || '') + '</strong> | ' + (r.institution || '')
         );
-        $('#resultForm').attr('action', '/research/reviews/' + r.id + '/result');
+        $('#resultForm').attr('action', '<?= BASE_URL ?>/reviews/' + r.id + '/result');
         $('input[name="review_result"]').prop('checked', false);
         $('input[name="review_result"][value="' + (r.review_result || '') + '"]').prop('checked', true);
         $('#resultScore').val(r.score || '');
@@ -394,7 +394,7 @@ $(document).ready(function () {
             '<strong>' + (r.reviewer_full_name || '') + '</strong><br>' +
             'ธนาคาร: ' + (r.bank_name || '-') + ' | บัญชี: ' + (r.bank_account || '-')
         );
-        $('#paymentForm').attr('action', '/research/reviews/' + r.id + '/payment');
+        $('#paymentForm').attr('action', '<?= BASE_URL ?>/reviews/' + r.id + '/payment');
         $('#paymentAmount').val(r.payment_amount || '');
         $('#paymentDate').val(r.payment_date || '');
         $('#paymentReference').val(r.payment_reference || '');

@@ -47,21 +47,21 @@ function getRelativeTime(string $datetime): string {
         </h4>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 breadcrumb-psu">
-                <li class="breadcrumb-item"><a href="/research/dashboard">หน้าหลัก</a></li>
+                <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/dashboard">หน้าหลัก</a></li>
                 <li class="breadcrumb-item active">การแจ้งเตือน</li>
             </ol>
         </nav>
     </div>
     <div class="d-flex gap-2">
         <?php if (!empty($unreadCount) && $unreadCount > 0): ?>
-            <form method="POST" action="/research/notifications/read-all" id="formReadAll">
+            <form method="POST" action="<?= BASE_URL ?>/notifications/read-all" id="formReadAll">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
                 <button type="submit" class="btn btn-outline-psu">
                     <i class="bi bi-check2-all me-1"></i> อ่านทั้งหมด
                 </button>
             </form>
         <?php endif; ?>
-        <a href="/research/notifications/clear-read" class="btn btn-outline-secondary"
+        <a href="<?= BASE_URL ?>/notifications/clear-read" class="btn btn-outline-secondary"
             onclick="return confirm('ต้องการลบการแจ้งเตือนที่อ่านแล้วทั้งหมด?')">
             <i class="bi bi-trash me-1"></i> ลบที่อ่านแล้ว
         </a>
@@ -72,14 +72,14 @@ function getRelativeTime(string $datetime): string {
 <ul class="nav nav-tabs mb-3" id="notifTabs">
     <li class="nav-item">
         <a class="nav-link <?= !isset($_GET['filter']) || $_GET['filter'] === 'all' ? 'active' : '' ?>"
-            href="/research/notifications">
+            href="<?= BASE_URL ?>/notifications">
             ทั้งหมด
             <span class="badge bg-secondary ms-1"><?= $totalCount ?? 0 ?></span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link <?= ($_GET['filter'] ?? '') === 'unread' ? 'active' : '' ?>"
-            href="/research/notifications?filter=unread">
+            href="<?= BASE_URL ?>/notifications?filter=unread">
             ยังไม่ได้อ่าน
             <?php if (!empty($unreadCount) && $unreadCount > 0): ?>
                 <span class="badge bg-danger ms-1"><?= $unreadCount ?></span>
@@ -88,7 +88,7 @@ function getRelativeTime(string $datetime): string {
     </li>
     <li class="nav-item">
         <a class="nav-link <?= ($_GET['filter'] ?? '') === 'read' ? 'active' : '' ?>"
-            href="/research/notifications?filter=read">
+            href="<?= BASE_URL ?>/notifications?filter=read">
             อ่านแล้ว
         </a>
     </li>
@@ -113,7 +113,7 @@ function getRelativeTime(string $datetime): string {
                         ยังไม่มีการแจ้งเตือนใด ๆ ในระบบ
                     <?php endif; ?>
                 </p>
-                <a href="/research/dashboard" class="btn btn-psu-primary mt-3">
+                <a href="<?= BASE_URL ?>/dashboard" class="btn btn-psu-primary mt-3">
                     <i class="bi bi-house me-1"></i> กลับหน้าหลัก
                 </a>
             </div>
@@ -269,7 +269,7 @@ document.querySelectorAll('.notification-link').forEach(function (link) {
 
         e.preventDefault();
 
-        fetch('/research/notifications/' + id + '/read', {
+        fetch('<?= BASE_URL ?>/notifications/' + id + '/read', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -293,7 +293,7 @@ document.querySelectorAll('.notification-link').forEach(function (link) {
 
 // Mark single as read via button
 function markAsRead(id, btn) {
-    fetch('/research/notifications/' + id + '/read', {
+    fetch('<?= BASE_URL ?>/notifications/' + id + '/read', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

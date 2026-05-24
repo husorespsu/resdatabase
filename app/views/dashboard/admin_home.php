@@ -61,10 +61,10 @@ $projectStatusMap = [
         </div>
     </div>
     <div class="d-none d-md-flex gap-2">
-        <a href="/research/proposals/create" class="btn btn-sm btn-light text-dark fw-semibold">
+        <a href="<?= BASE_URL ?>/proposals/create" class="btn btn-sm btn-light text-dark fw-semibold">
             <i class="fas fa-plus-circle me-1"></i>เพิ่มข้อเสนอ
         </a>
-        <a href="/research/dashboard" class="btn btn-sm btn-outline-light">
+        <a href="<?= BASE_URL ?>/dashboard" class="btn btn-sm btn-outline-light">
             <i class="fas fa-chart-bar me-1"></i>Dashboard ผู้บริหาร
         </a>
     </div>
@@ -74,10 +74,10 @@ $projectStatusMap = [
 <div class="row g-3 mb-4">
     <?php
     $kpiCards = [
-        ['label'=>'ข้อเสนอทั้งหมด',     'value'=>$cntTotal,     'color'=>'primary', 'icon'=>'fa-file-alt',    'href'=>'/research/proposals'],
-        ['label'=>'รอพิจารณา',           'value'=>$cntReviewing, 'color'=>'warning', 'icon'=>'fa-hourglass-half','href'=>'/research/proposals?status=reviewing'],
-        ['label'=>'โครงการดำเนินการ',    'value'=>$cntProjects,  'color'=>'success', 'icon'=>'fa-flask',        'href'=>'/research/projects?status=in_progress'],
-        ['label'=>'การประเมินใกล้กำหนด', 'value'=>$pendingCount, 'color'=>'danger',  'icon'=>'fa-bell',         'href'=>'/research/payments'],
+        ['label'=>'ข้อเสนอทั้งหมด',     'value'=>$cntTotal,     'color'=>'primary', 'icon'=>'fa-file-alt',    'href'=>'<?= BASE_URL ?>/proposals'],
+        ['label'=>'รอพิจารณา',           'value'=>$cntReviewing, 'color'=>'warning', 'icon'=>'fa-hourglass-half','href'=>'<?= BASE_URL ?>/proposals?status=reviewing'],
+        ['label'=>'โครงการดำเนินการ',    'value'=>$cntProjects,  'color'=>'success', 'icon'=>'fa-flask',        'href'=>'<?= BASE_URL ?>/projects?status=in_progress'],
+        ['label'=>'การประเมินใกล้กำหนด', 'value'=>$pendingCount, 'color'=>'danger',  'icon'=>'fa-bell',         'href'=>'<?= BASE_URL ?>/payments'],
     ];
     foreach ($kpiCards as $k):
     ?>
@@ -110,7 +110,7 @@ $projectStatusMap = [
                 <span class="fw-semibold" style="color:#003B6D;">
                     <i class="fas fa-file-alt me-1"></i>ข้อเสนอโครงการล่าสุด
                 </span>
-                <a href="/research/proposals" class="btn btn-sm btn-outline-secondary">ดูทั้งหมด</a>
+                <a href="<?= BASE_URL ?>/proposals" class="btn btn-sm btn-outline-secondary">ดูทั้งหมด</a>
             </div>
             <div class="card-body p-0">
                 <?php if (empty($recentProposals)): ?>
@@ -134,7 +134,7 @@ $projectStatusMap = [
                             ?>
                                 <tr>
                                     <td class="ps-3">
-                                        <a href="/research/proposals/<?= (int)$p['id'] ?>"
+                                        <a href="<?= BASE_URL ?>/proposals/<?= (int)$p['id'] ?>"
                                            class="fw-semibold text-decoration-none" style="color:#003B6D;">
                                             <?= h($p['proposal_code'] ?? '-') ?>
                                         </a>
@@ -172,7 +172,7 @@ $projectStatusMap = [
                     <i class="fas fa-clock me-1"></i>การประเมินใกล้กำหนด
                     <span class="badge bg-warning text-dark ms-1" style="font-size:.65rem;">7 วัน</span>
                 </span>
-                <a href="/research/payments" class="btn btn-sm btn-outline-secondary">ดูทั้งหมด</a>
+                <a href="<?= BASE_URL ?>/payments" class="btn btn-sm btn-outline-secondary">ดูทั้งหมด</a>
             </div>
             <div class="card-body p-0">
                 <?php if (empty($pendingReviews)): ?>
@@ -211,7 +211,7 @@ $projectStatusMap = [
                 <span class="fw-semibold" style="color:#003B6D;">
                     <i class="fas fa-flask me-1"></i>โครงการวิจัยล่าสุด
                 </span>
-                <a href="/research/projects" class="btn btn-sm btn-outline-secondary">ดูทั้งหมด</a>
+                <a href="<?= BASE_URL ?>/projects" class="btn btn-sm btn-outline-secondary">ดูทั้งหมด</a>
             </div>
             <div class="card-body p-0">
                 <?php if (empty($recentProjects)): ?>
@@ -227,7 +227,7 @@ $projectStatusMap = [
                         ?>
                             <li class="list-group-item px-3 py-2">
                                 <div class="d-flex justify-content-between align-items-start mb-1">
-                                    <a href="/research/projects/<?= (int)$rj['id'] ?>"
+                                    <a href="<?= BASE_URL ?>/projects/<?= (int)$rj['id'] ?>"
                                        class="fw-semibold text-decoration-none small" style="color:#003B6D;">
                                         <?= h($rj['project_code'] ?? '-') ?>
                                     </a>
@@ -256,19 +256,19 @@ $projectStatusMap = [
                 </span>
             </div>
             <div class="card-body d-flex flex-wrap gap-2">
-                <a href="/research/proposals/create" class="btn btn-sm text-white" style="background:#003B6D;">
+                <a href="<?= BASE_URL ?>/proposals/create" class="btn btn-sm text-white" style="background:#003B6D;">
                     <i class="fas fa-plus-circle me-1"></i>เพิ่มข้อเสนอโครงการ
                 </a>
-                <a href="/research/projects/create" class="btn btn-sm btn-outline-secondary">
+                <a href="<?= BASE_URL ?>/projects/create" class="btn btn-sm btn-outline-secondary">
                     <i class="fas fa-flask me-1"></i>เพิ่มโครงการวิจัย
                 </a>
-                <a href="/research/reviewers" class="btn btn-sm btn-outline-secondary">
+                <a href="<?= BASE_URL ?>/reviewers" class="btn btn-sm btn-outline-secondary">
                     <i class="fas fa-user-tie me-1"></i>จัดการผู้ทรงคุณวุฒิ
                 </a>
-                <a href="/research/payments" class="btn btn-sm btn-outline-secondary">
+                <a href="<?= BASE_URL ?>/payments" class="btn btn-sm btn-outline-secondary">
                     <i class="fas fa-money-bill-wave me-1"></i>การเงิน
                 </a>
-                <a href="/research/dashboard" class="btn btn-sm btn-outline-secondary">
+                <a href="<?= BASE_URL ?>/dashboard" class="btn btn-sm btn-outline-secondary">
                     <i class="fas fa-chart-bar me-1"></i>Dashboard ผู้บริหาร
                 </a>
             </div>

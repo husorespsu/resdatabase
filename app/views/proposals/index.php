@@ -23,7 +23,7 @@ $totalCount = count($proposals ?? []);
         <p class="text-muted mb-0 small">ทั้งหมด <strong><?= $totalCount ?></strong> รายการ</p>
     </div>
     <?php if ($isAdmin): ?>
-    <a href="/research/proposals/create" class="btn text-white" style="background:#003B6D;">
+    <a href="<?= BASE_URL ?>/proposals/create" class="btn text-white" style="background:#003B6D;">
         <i class="fas fa-plus-circle me-1"></i>เพิ่มข้อเสนอใหม่
     </a>
     <?php endif; ?>
@@ -42,7 +42,7 @@ $totalCount = count($proposals ?? []);
         $count = $statusCounts[$card['status']] ?? 0;
     ?>
     <div class="col-6 col-md-3">
-        <a href="/research/proposals?status=<?= $card['status'] ?>" class="text-decoration-none">
+        <a href="<?= BASE_URL ?>/proposals?status=<?= $card['status'] ?>" class="text-decoration-none">
             <div class="card border-0 shadow-sm h-100 <?= ($filters['status'] ?? '') === $card['status'] ? 'border-2 border-' . $card['color'] : '' ?>">
                 <div class="card-body d-flex align-items-center gap-3">
                     <div class="rounded-circle bg-<?= $card['color'] ?> bg-opacity-10 p-3 flex-shrink-0"
@@ -63,7 +63,7 @@ $totalCount = count($proposals ?? []);
 <!-- Filters -->
 <div class="card border-0 shadow-sm mb-4">
     <div class="card-body">
-        <form method="GET" action="/research/proposals">
+        <form method="GET" action="<?= BASE_URL ?>/proposals">
             <div class="row g-3 align-items-end">
                 <div class="col-12 col-md-2">
                     <label class="form-label small fw-semibold text-muted mb-1">สถานะ</label>
@@ -119,7 +119,7 @@ $totalCount = count($proposals ?? []);
             </div>
             <?php if (array_filter($filters)): ?>
             <div class="mt-2">
-                <a href="/research/proposals" class="btn btn-sm btn-outline-secondary">
+                <a href="<?= BASE_URL ?>/proposals" class="btn btn-sm btn-outline-secondary">
                     <i class="fas fa-times me-1"></i>ล้างตัวกรอง
                 </a>
             </div>
@@ -133,7 +133,7 @@ $totalCount = count($proposals ?? []);
     <div class="card-header bg-white d-flex justify-content-between align-items-center py-2">
         <span class="small text-muted">แสดง <?= $totalCount ?> รายการ</span>
         <div class="d-flex gap-2">
-            <a href="/research/proposals?<?= http_build_query(array_merge($_GET, ['export' => 'excel'])) ?>"
+            <a href="<?= BASE_URL ?>/proposals?<?= http_build_query(array_merge($_GET, ['export' => 'excel'])) ?>"
                class="btn btn-sm btn-success">
                 <i class="fas fa-file-excel me-1"></i>Excel
             </a>
@@ -163,7 +163,7 @@ $totalCount = count($proposals ?? []);
                             ไม่พบข้อมูลข้อเสนอโครงการ
                             <?php if ($isAdmin): ?>
                             <div class="mt-3">
-                                <a href="/research/proposals/create" class="btn btn-sm text-white" style="background:#003B6D;">
+                                <a href="<?= BASE_URL ?>/proposals/create" class="btn btn-sm text-white" style="background:#003B6D;">
                                     <i class="fas fa-plus-circle me-1"></i>เพิ่มข้อเสนอแรก
                                 </a>
                             </div>
@@ -174,7 +174,7 @@ $totalCount = count($proposals ?? []);
                     <?php foreach ($proposals as $p): ?>
                     <tr>
                         <td class="ps-3">
-                            <a href="/research/proposals/<?= (int)$p['id'] ?>"
+                            <a href="<?= BASE_URL ?>/proposals/<?= (int)$p['id'] ?>"
                                class="fw-semibold text-decoration-none" style="color:#003B6D;">
                                 <?= h($p['proposal_code'] ?? '-') ?>
                             </a>
@@ -210,12 +210,12 @@ $totalCount = count($proposals ?? []);
                         <?php if ($isAdmin): ?>
                         <td class="text-center">
                             <div class="btn-group btn-group-sm">
-                                <a href="/research/proposals/<?= (int)$p['id'] ?>"
+                                <a href="<?= BASE_URL ?>/proposals/<?= (int)$p['id'] ?>"
                                    class="btn btn-outline-primary" title="ดูรายละเอียด">
                                     <i class="fas fa-eye"></i>
                                 </a>
                                 <?php if (!in_array($p['status'] ?? '', ['approved'])): ?>
-                                <a href="/research/proposals/<?= (int)$p['id'] ?>/edit"
+                                <a href="<?= BASE_URL ?>/proposals/<?= (int)$p['id'] ?>/edit"
                                    class="btn btn-outline-secondary" title="แก้ไข">
                                     <i class="fas fa-edit"></i>
                                 </a>
@@ -301,7 +301,7 @@ $(document).ready(function () {
         var id     = $(this).data('id');
         var status = $(this).data('status');
         var code   = $(this).data('code');
-        $('#statusForm').attr('action', '/research/proposals/' + id + '/status');
+        $('#statusForm').attr('action', '<?= BASE_URL ?>/proposals/' + id + '/status');
         $('#modalProposalCode').text(code);
         $('#modalNewStatus').val('');
         $('#confirmStatusBtn').prop('disabled', true);

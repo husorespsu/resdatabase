@@ -26,7 +26,7 @@ $basePath    = '/research';
     <!-- SweetAlert2 11 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/research/public/css/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/public/css/style.css">
 
     <style>
         :root {
@@ -461,8 +461,8 @@ $basePath    = '/research';
 
         <!-- หน้าหลัก -->
         <li class="nav-item">
-            <a href="/research/"
-               class="nav-link <?= ($uri === '/research/' || $uri === '/research') ? 'active' : '' ?>">
+            <a href="<?= BASE_URL ?>/"
+               class="nav-link <?= ($uri === '<?= BASE_URL ?>/' || $uri === '/research') ? 'active' : '' ?>">
                 <span class="nav-icon"><i class="fas fa-home"></i></span>
                 <span>หน้าหลัก</span>
             </a>
@@ -471,7 +471,7 @@ $basePath    = '/research';
         <!-- Dashboard ผู้บริหาร (admin/superadmin/executive) -->
         <?php if (in_array($currentUser['role'] ?? '', ['admin', 'superadmin', 'executive'])): ?>
         <li class="nav-item">
-            <a href="/research/dashboard"
+            <a href="<?= BASE_URL ?>/dashboard"
                class="nav-link <?= str_contains($uri, '/dashboard') ? 'active' : '' ?>">
                 <span class="nav-icon"><i class="fas fa-chart-pie"></i></span>
                 <span>Dashboard ผู้บริหาร</span>
@@ -497,14 +497,14 @@ $basePath    = '/research';
                  id="collapseProposals">
                 <ul class="sub-menu list-unstyled">
                     <li class="sub-item">
-                        <a href="/research/proposals"
-                           class="<?= $uri === '/research/proposals' ? 'active' : '' ?>">
+                        <a href="<?= BASE_URL ?>/proposals"
+                           class="<?= $uri === '<?= BASE_URL ?>/proposals' ? 'active' : '' ?>">
                             รายการทั้งหมด
                         </a>
                     </li>
                     <?php if (in_array($currentUser['role'] ?? '', ['admin', 'superadmin'])): ?>
                     <li class="sub-item">
-                        <a href="/research/proposals/create"
+                        <a href="<?= BASE_URL ?>/proposals/create"
                            class="<?= str_contains($uri, '/proposals/create') ? 'active' : '' ?>">
                             เพิ่มข้อเสนอใหม่
                         </a>
@@ -529,13 +529,13 @@ $basePath    = '/research';
                  id="collapseProjects">
                 <ul class="sub-menu list-unstyled">
                     <li class="sub-item">
-                        <a href="/research/projects"
-                           class="<?= $uri === '/research/projects' ? 'active' : '' ?>">
+                        <a href="<?= BASE_URL ?>/projects"
+                           class="<?= $uri === '<?= BASE_URL ?>/projects' ? 'active' : '' ?>">
                             รายการโครงการ
                         </a>
                     </li>
                     <li class="sub-item">
-                        <a href="/research/projects?view=progress"
+                        <a href="<?= BASE_URL ?>/projects?view=progress"
                            class="<?= (str_contains($uri, '/projects') && ($_GET['view'] ?? '') === 'progress') ? 'active' : '' ?>">
                             ติดตามความคืบหน้า
                         </a>
@@ -560,14 +560,14 @@ $basePath    = '/research';
                  id="collapseReviewers">
                 <ul class="sub-menu list-unstyled">
                     <li class="sub-item">
-                        <a href="/research/reviewers"
-                           class="<?= $uri === '/research/reviewers' ? 'active' : '' ?>">
+                        <a href="<?= BASE_URL ?>/reviewers"
+                           class="<?= $uri === '<?= BASE_URL ?>/reviewers' ? 'active' : '' ?>">
                             ทะเบียนผู้ทรง
                         </a>
                     </li>
                     <?php if (in_array($currentUser['role'] ?? '', ['admin', 'superadmin'])): ?>
                     <li class="sub-item">
-                        <a href="/research/reviewers?view=assignments"
+                        <a href="<?= BASE_URL ?>/reviewers?view=assignments"
                            class="<?= (str_contains($uri, '/reviewers') && ($_GET['view'] ?? '') === 'assignments') ? 'active' : '' ?>">
                             การมอบหมายงาน
                         </a>
@@ -581,7 +581,7 @@ $basePath    = '/research';
         <!-- การเงิน (not shown to executive) -->
         <?php if (($currentUser['role'] ?? '') !== 'executive'): ?>
         <li class="nav-item">
-            <a href="/research/payments"
+            <a href="<?= BASE_URL ?>/payments"
                class="nav-link <?= str_contains($uri, '/payments') ? 'active' : '' ?>">
                 <span class="nav-icon"><i class="fas fa-money-bill-wave"></i></span>
                 <span>การเงิน</span>
@@ -608,19 +608,19 @@ $basePath    = '/research';
                  id="collapseSettings">
                 <ul class="sub-menu list-unstyled">
                     <li class="sub-item">
-                        <a href="/research/settings/funding"
+                        <a href="<?= BASE_URL ?>/settings/funding"
                            class="<?= str_contains($uri, '/settings/funding') ? 'active' : '' ?>">
                             แหล่งทุน
                         </a>
                     </li>
                     <li class="sub-item">
-                        <a href="/research/settings/fields"
+                        <a href="<?= BASE_URL ?>/settings/fields"
                            class="<?= str_contains($uri, '/settings/fields') ? 'active' : '' ?>">
                             สาขาวิชา
                         </a>
                     </li>
                     <li class="sub-item">
-                        <a href="/research/settings/users"
+                        <a href="<?= BASE_URL ?>/settings/users"
                            class="<?= str_contains($uri, '/settings/users') ? 'active' : '' ?>">
                             ผู้ใช้งาน
                         </a>
@@ -647,7 +647,7 @@ $basePath    = '/research';
         <?php if (!empty($breadcrumbs)): ?>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/research/">หน้าหลัก</a></li>
+                <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/">หน้าหลัก</a></li>
                 <?php foreach ($breadcrumbs as $bc): ?>
                     <?php if (!empty($bc['url'])): ?>
                         <li class="breadcrumb-item">
@@ -670,7 +670,7 @@ $basePath    = '/research';
     <div class="topbar-actions ms-auto">
 
         <!-- Notification Bell -->
-        <a href="/research/notifications"
+        <a href="<?= BASE_URL ?>/notifications"
            class="topbar-btn"
            id="notification-bell"
            aria-label="การแจ้งเตือน"
@@ -724,7 +724,7 @@ $basePath    = '/research';
                 </li>
                 <li><hr class="dropdown-divider my-1"></li>
                 <li>
-                    <a class="dropdown-item d-flex align-items-center gap-2" href="/research/profile">
+                    <a class="dropdown-item d-flex align-items-center gap-2" href="<?= BASE_URL ?>/profile">
                         <i class="fas fa-user-circle text-muted" style="width:16px;"></i>
                         โปรไฟล์ของฉัน
                     </a>
@@ -732,7 +732,7 @@ $basePath    = '/research';
                 <li><hr class="dropdown-divider my-1"></li>
                 <li>
                     <a class="dropdown-item d-flex align-items-center gap-2 text-danger"
-                       href="/research/auth/logout"
+                       href="<?= BASE_URL ?>/auth/logout"
                        onclick="return confirm('ต้องการออกจากระบบ?')">
                         <i class="fas fa-sign-out-alt" style="width:16px;"></i>
                         ออกจากระบบ
@@ -772,7 +772,7 @@ $basePath    = '/research';
         <?php if (!empty($breadcrumbs)): ?>
         <nav aria-label="breadcrumb" class="mb-3">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/research/">หน้าหลัก</a></li>
+                <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/">หน้าหลัก</a></li>
                 <?php foreach ($breadcrumbs as $bc): ?>
                     <?php if (!empty($bc['url'])): ?>
                         <li class="breadcrumb-item">
@@ -801,7 +801,7 @@ $basePath    = '/research';
         <!-- SweetAlert2 11 -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
         <!-- Custom App JS -->
-        <script src="/research/public/js/app.js"></script>
+        <script src="<?= BASE_URL ?>/public/js/app.js"></script>
 
         <?php echo $content; ?>
 
@@ -875,7 +875,7 @@ $basePath    = '/research';
     const notifBadge = document.getElementById('notification-count');
 
     function fetchUnreadCount() {
-        fetch('/research/notifications/unread-count', {
+        fetch('<?= BASE_URL ?>/notifications/unread-count', {
             headers: { 'X-Requested-With': 'XMLHttpRequest', 'X-CSRF-Token': csrfToken }
         })
         .then(function (r) { return r.ok ? r.json() : null; })

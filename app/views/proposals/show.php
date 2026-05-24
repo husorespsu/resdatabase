@@ -57,7 +57,7 @@ $reviewerStatusMap = [
 <!-- Breadcrumb -->
 <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/research/proposals">ข้อเสนอโครงการวิจัย</a></li>
+        <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/proposals">ข้อเสนอโครงการวิจัย</a></li>
         <li class="breadcrumb-item active">ดูรายละเอียด</li>
     </ol>
 </nav>
@@ -76,7 +76,7 @@ $reviewerStatusMap = [
     </div>
     <div class="d-flex gap-2 flex-wrap">
         <?php if ($isAdmin && !in_array($proposal['status'], ['approved'])): ?>
-        <a href="/research/proposals/<?= (int)$proposal['id'] ?>/edit" class="btn btn-outline-secondary">
+        <a href="<?= BASE_URL ?>/proposals/<?= (int)$proposal['id'] ?>/edit" class="btn btn-outline-secondary">
             <i class="fas fa-edit me-1"></i>แก้ไข
         </a>
         <?php endif; ?>
@@ -85,7 +85,7 @@ $reviewerStatusMap = [
             <i class="fas fa-exchange-alt me-1"></i>เปลี่ยนสถานะ
         </button>
         <?php endif; ?>
-        <a href="/research/proposals" class="btn btn-outline-secondary">
+        <a href="<?= BASE_URL ?>/proposals" class="btn btn-outline-secondary">
             <i class="fas fa-arrow-left me-1"></i>กลับ
         </a>
     </div>
@@ -99,7 +99,7 @@ $reviewerStatusMap = [
         <strong>โครงการวิจัยถูกสร้างแล้ว</strong>
         รหัสโครงการ: <code><?= h($proposal['linked_project']['project_code']) ?></code>
         สถานะ: <span class="badge bg-primary"><?= h($proposal['linked_project']['project_status']) ?></span>
-        <a href="/research/projects/<?= (int)$proposal['linked_project']['id'] ?>" class="btn btn-sm btn-success ms-2">
+        <a href="<?= BASE_URL ?>/projects/<?= (int)$proposal['linked_project']['id'] ?>" class="btn btn-sm btn-success ms-2">
             <i class="fas fa-external-link-alt me-1"></i>ดูโครงการ
         </a>
     </div>
@@ -210,7 +210,7 @@ $reviewerStatusMap = [
                     </span>
                 </h6>
                 <?php if ($isAdmin): ?>
-                <a href="/research/proposals/<?= (int)$proposal['id'] ?>/assign-reviewers" class="btn btn-sm btn-outline-secondary">
+                <a href="<?= BASE_URL ?>/proposals/<?= (int)$proposal['id'] ?>/assign-reviewers" class="btn btn-sm btn-outline-secondary">
                     <i class="fas fa-user-plus me-1"></i>มอบหมายผู้ทรงคุณวุฒิ
                 </a>
                 <?php endif; ?>
@@ -360,7 +360,7 @@ $reviewerStatusMap = [
             </div>
             <div class="card-body">
                 <?php if (!empty($proposal['attachment_path'])): ?>
-                <a href="/research/uploads/<?= htmlspecialchars($proposal['attachment_path']) ?>"
+                <a href="<?= BASE_URL ?>/uploads/<?= htmlspecialchars($proposal['attachment_path']) ?>"
                    class="btn btn-outline-danger w-100" target="_blank">
                     <i class="fas fa-file-pdf me-2"></i>ดาวน์โหลดเอกสาร PDF
                 </a>
@@ -389,7 +389,7 @@ $reviewerStatusMap = [
 <?php if ($isAdmin && !empty($validTransitions)): ?>
 <div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <form method="POST" action="/research/proposals/<?= (int)$proposal['id'] ?>/status" id="statusChangeForm">
+        <form method="POST" action="<?= BASE_URL ?>/proposals/<?= (int)$proposal['id'] ?>/status" id="statusChangeForm">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
             <input type="hidden" name="status" id="modalSelectedStatus">
             <div class="modal-content">

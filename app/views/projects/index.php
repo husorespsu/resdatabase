@@ -31,7 +31,7 @@ $statusMap = [
         <p class="text-muted mb-0 small">ทั้งหมด <strong><?= (int)($stats['total'] ?? count($projects ?? [])) ?></strong> โครงการ</p>
     </div>
     <?php if ($isAdmin): ?>
-    <a href="/research/projects/create" class="btn text-white" style="background:#003B6D;">
+    <a href="<?= BASE_URL ?>/projects/create" class="btn text-white" style="background:#003B6D;">
         <i class="fas fa-plus-circle me-1"></i>เพิ่มโครงการใหม่
     </a>
     <?php endif; ?>
@@ -82,7 +82,7 @@ $statusMap = [
 <!-- Filters -->
 <div class="card border-0 shadow-sm mb-4">
     <div class="card-body">
-        <form method="GET" action="/research/projects">
+        <form method="GET" action="<?= BASE_URL ?>/projects">
             <div class="row g-3 align-items-end">
                 <div class="col-12 col-md-2">
                     <label class="form-label small fw-semibold text-muted mb-1">สถานะ</label>
@@ -129,7 +129,7 @@ $statusMap = [
             </div>
             <?php if (array_filter($filters)): ?>
             <div class="mt-2">
-                <a href="/research/projects" class="btn btn-sm btn-outline-secondary">
+                <a href="<?= BASE_URL ?>/projects" class="btn btn-sm btn-outline-secondary">
                     <i class="fas fa-times me-1"></i>ล้างตัวกรอง
                 </a>
             </div>
@@ -142,7 +142,7 @@ $statusMap = [
 <div class="card border-0 shadow-sm">
     <div class="card-header bg-white d-flex justify-content-between align-items-center py-2">
         <span class="small text-muted">แสดง <?= count($projects ?? []) ?> โครงการ</span>
-        <a href="/research/projects?<?= http_build_query(array_merge($_GET, ['export' => 'excel'])) ?>"
+        <a href="<?= BASE_URL ?>/projects?<?= http_build_query(array_merge($_GET, ['export' => 'excel'])) ?>"
            class="btn btn-sm btn-success">
             <i class="fas fa-file-excel me-1"></i>Excel
         </a>
@@ -170,7 +170,7 @@ $statusMap = [
                             ไม่พบข้อมูลโครงการวิจัย
                             <?php if ($isAdmin): ?>
                             <div class="mt-3">
-                                <a href="/research/projects/create" class="btn btn-sm text-white" style="background:#003B6D;">
+                                <a href="<?= BASE_URL ?>/projects/create" class="btn btn-sm text-white" style="background:#003B6D;">
                                     <i class="fas fa-plus-circle me-1"></i>เพิ่มโครงการแรก
                                 </a>
                             </div>
@@ -185,7 +185,7 @@ $statusMap = [
                     ?>
                     <tr>
                         <td class="ps-3">
-                            <a href="/research/projects/<?= (int)$p['id'] ?>"
+                            <a href="<?= BASE_URL ?>/projects/<?= (int)$p['id'] ?>"
                                class="fw-semibold text-decoration-none" style="color:#003B6D;">
                                 <?= h($p['project_code'] ?? '-') ?>
                             </a>
@@ -227,7 +227,7 @@ $statusMap = [
                             <span class="badge bg-<?= $statusColor ?>"><?= $statusLabel ?></span>
                         </td>
                         <td class="text-center">
-                            <a href="/research/projects/<?= (int)$p['id'] ?>"
+                            <a href="<?= BASE_URL ?>/projects/<?= (int)$p['id'] ?>"
                                class="btn btn-sm btn-outline-primary" title="ดูรายละเอียด">
                                 <i class="fas fa-eye"></i>
                             </a>

@@ -98,7 +98,7 @@ $stackedDatasets = json_encode($statusYearPivot['series'] ?? [], JSON_UNESCAPED_
 <!-- ── Filter Panel ──────────────────────────────────────────────────────── -->
 <div class="filter-panel">
     <div class="filter-title"><i class="fas fa-filter me-2"></i>ตัวกรองข้อมูล</div>
-    <form method="GET" action="/research/dashboard">
+    <form method="GET" action="<?= BASE_URL ?>/dashboard">
         <div class="row g-3 align-items-end">
 
             <div class="col-md-3">
@@ -144,7 +144,7 @@ $stackedDatasets = json_encode($statusYearPivot['series'] ?? [], JSON_UNESCAPED_
                 <button type="submit" class="btn btn-sm btn-primary">
                     <i class="fas fa-search me-1"></i>แสดงผล
                 </button>
-                <a href="/research/dashboard" class="btn btn-sm btn-outline-secondary">รีเซ็ต</a>
+                <a href="<?= BASE_URL ?>/dashboard" class="btn btn-sm btn-outline-secondary">รีเซ็ต</a>
             </div>
 
             <!-- Month checkboxes -->

@@ -43,7 +43,7 @@ foreach ($users as $u) {
         </h4>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="/research/">หน้าหลัก</a></li>
+                <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/">หน้าหลัก</a></li>
                 <li class="breadcrumb-item">การตั้งค่า</li>
                 <li class="breadcrumb-item active">จัดการผู้ใช้งาน</li>
             </ol>
@@ -262,7 +262,7 @@ foreach ($users as $u) {
 <div class="modal fade" id="modalCreateUser" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <form method="POST" action="/research/settings/users/store">
+            <form method="POST" action="<?= BASE_URL ?>/settings/users/store">
                 <input type="hidden" name="csrf_token" value="<?= h($csrfToken) ?>">
                 <div class="modal-header text-white" style="background:#003B6D;">
                     <h6 class="modal-title fw-semibold">
@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }).then(function (r) {
                 if (!r.isConfirmed) { select.value = currentRole; return; }
 
-                fetch('/research/settings/users/' + userId + '/role', {
+                fetch('<?= BASE_URL ?>/settings/users/' + userId + '/role', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams({ csrf_token: csrfToken, role: newRole }),
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(function (r) {
             if (!r.isConfirmed) return;
 
-            fetch('/research/settings/users/' + userId + '/toggle', {
+            fetch('<?= BASE_URL ?>/settings/users/' + userId + '/toggle', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: new URLSearchParams({ csrf_token: csrfToken }),
@@ -468,7 +468,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!r.isConfirmed) return;
             const form = document.createElement('form');
             form.method = 'POST';
-            form.action = '/research/settings/users/' + userId + '/delete';
+            form.action = '<?= BASE_URL ?>/settings/users/' + userId + '/delete';
             form.innerHTML = `<input type="hidden" name="csrf_token" value="${csrfToken}">`;
             document.getElementById('deleteForms').appendChild(form);
             form.submit();

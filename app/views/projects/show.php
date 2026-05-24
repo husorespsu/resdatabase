@@ -71,7 +71,7 @@ $tabMap = ['info' => 0, 'reviewers' => 1, 'progress' => 2, 'documents' => 3];
 <!-- Breadcrumb -->
 <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/research/projects">โครงการวิจัย</a></li>
+        <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/projects">โครงการวิจัย</a></li>
         <li class="breadcrumb-item active">รายละเอียด</li>
     </ol>
 </nav>
@@ -95,11 +95,11 @@ $tabMap = ['info' => 0, 'reviewers' => 1, 'progress' => 2, 'documents' => 3];
         </button>
         <?php endif; ?>
         <?php if (!empty($project['proposal_id'])): ?>
-        <a href="/research/proposals/<?= $project['proposal_id'] ?>" class="btn btn-outline-secondary">
+        <a href="<?= BASE_URL ?>/proposals/<?= $project['proposal_id'] ?>" class="btn btn-outline-secondary">
             <i class="bi bi-file-earmark-text me-1"></i>ดูข้อเสนอเดิม
         </a>
         <?php endif; ?>
-        <a href="/research/projects" class="btn btn-outline-secondary">
+        <a href="<?= BASE_URL ?>/projects" class="btn btn-outline-secondary">
             <i class="bi bi-arrow-left me-1"></i>กลับ
         </a>
     </div>
@@ -226,7 +226,7 @@ $tabMap = ['info' => 0, 'reviewers' => 1, 'progress' => 2, 'documents' => 3];
 
                 <!-- หมายเหตุ (editable) -->
                 <h6 class="fw-bold text-psu-blue border-bottom pb-2 mt-4 mb-3">หมายเหตุโครงการ</h6>
-                <form method="POST" action="/research/projects/<?= $project['id'] ?>/update">
+                <form method="POST" action="<?= BASE_URL ?>/projects/<?= $project['id'] ?>/update">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
                     <input type="hidden" name="action" value="update_notes">
                     <textarea name="notes" class="form-control mb-2" rows="4"
@@ -379,7 +379,7 @@ $tabMap = ['info' => 0, 'reviewers' => 1, 'progress' => 2, 'documents' => 3];
                 <!-- Progress editor -->
                 <h5 class="fw-bold text-psu-blue mb-3">อัปเดตความคืบหน้า</h5>
                 <?php if ($isAdmin): ?>
-                <form method="POST" action="/research/projects/<?= $project['id'] ?>/update" id="progressForm">
+                <form method="POST" action="<?= BASE_URL ?>/projects/<?= $project['id'] ?>/update" id="progressForm">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
                     <input type="hidden" name="action" value="update_progress">
 
@@ -473,7 +473,7 @@ $tabMap = ['info' => 0, 'reviewers' => 1, 'progress' => 2, 'documents' => 3];
             <i class="bi bi-file-earmark-pdf fs-3 text-danger"></i>
             <div>
                 <strong>เอกสารข้อเสนอโครงการ (ต้นฉบับ)</strong><br>
-                <a href="/research/uploads/<?= htmlspecialchars($project['proposal_attachment']) ?>"
+                <a href="<?= BASE_URL ?>/uploads/<?= htmlspecialchars($project['proposal_attachment']) ?>"
                    class="btn btn-sm btn-outline-danger mt-1" target="_blank">
                     <i class="bi bi-download me-1"></i>ดาวน์โหลดเอกสาร PDF
                 </a>
@@ -487,7 +487,7 @@ $tabMap = ['info' => 0, 'reviewers' => 1, 'progress' => 2, 'documents' => 3];
                 <i class="bi bi-cloud-upload me-2"></i>อัปโหลดเอกสารเพิ่มเติม
             </div>
             <div class="card-body">
-                <form method="POST" action="/research/projects/<?= $project['id'] ?>/update"
+                <form method="POST" action="<?= BASE_URL ?>/projects/<?= $project['id'] ?>/update"
                       enctype="multipart/form-data" id="docUploadForm">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
                     <input type="hidden" name="action" value="upload_document">
@@ -541,7 +541,7 @@ $tabMap = ['info' => 0, 'reviewers' => 1, 'progress' => 2, 'documents' => 3];
                         <?php endif; ?>
                     </div>
                 </div>
-                <a href="/research/uploads/<?= htmlspecialchars($doc['file_path']) ?>"
+                <a href="<?= BASE_URL ?>/uploads/<?= htmlspecialchars($doc['file_path']) ?>"
                    class="btn btn-sm btn-outline-secondary" target="_blank">
                     <i class="bi bi-download"></i>
                 </a>
@@ -559,7 +559,7 @@ $tabMap = ['info' => 0, 'reviewers' => 1, 'progress' => 2, 'documents' => 3];
 <?php if ($isAdmin && !empty($validTransitions)): ?>
 <div class="modal fade" id="statusModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
-        <form method="POST" action="/research/projects/<?= $project['id'] ?>/update" id="statusForm">
+        <form method="POST" action="<?= BASE_URL ?>/projects/<?= $project['id'] ?>/update" id="statusForm">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
             <input type="hidden" name="action" value="update_status">
             <input type="hidden" name="status" id="selectedStatus">

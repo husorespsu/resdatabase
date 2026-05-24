@@ -9,12 +9,12 @@
     <h4 class="fw-bold mb-0" style="color:#003B6D;">
         <i class="fas fa-file-plus me-2"></i>เพิ่มข้อเสนอโครงการวิจัย
     </h4>
-    <a href="/research/proposals" class="btn btn-outline-secondary btn-sm">
+    <a href="<?= BASE_URL ?>/proposals" class="btn btn-outline-secondary btn-sm">
         <i class="fas fa-arrow-left me-1"></i>กลับ
     </a>
 </div>
 
-<form method="POST" action="/research/proposals/store" enctype="multipart/form-data" id="proposalForm" novalidate>
+<form method="POST" action="<?= BASE_URL ?>/proposals/store" enctype="multipart/form-data" id="proposalForm" novalidate>
     <input type="hidden" name="csrf_token" value="<?= h($csrfToken) ?>">
 
     <!-- ── Section 1: ชื่อโครงการ ──────────────────────────────────── -->
@@ -185,7 +185,7 @@
     <!-- ── Buttons ──────────────────────────────────────────────────── -->
     <div class="card border-0 shadow-sm mb-5">
         <div class="card-body d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <a href="/research/proposals" class="btn btn-outline-secondary">
+            <a href="<?= BASE_URL ?>/proposals" class="btn btn-outline-secondary">
                 <i class="fas fa-arrow-left me-1"></i>ยกเลิก
             </a>
             <div class="d-flex gap-2">
@@ -220,7 +220,7 @@ $(document).ready(function () {
             searching:     function() { return 'กำลังค้นหา...'; },
         },
         ajax: {
-            url: '/research/api/personnel/search',
+            url: '<?= BASE_URL ?>/api/personnel/search',
             dataType: 'json',
             delay: 200,
             data: function(params) { return { q: params.term }; },
@@ -283,7 +283,7 @@ $(document).ready(function () {
                 searching:     function() { return 'กำลังค้นหา...'; },
             },
             ajax: {
-                url: '/research/api/personnel/search',
+                url: '<?= BASE_URL ?>/api/personnel/search',
                 dataType: 'json',
                 delay: 200,
                 data: function(params) { return { q: params.term }; },

@@ -2,12 +2,9 @@
 # PSU Research Management System – Apache .htaccess
 # ============================================================
 
-# ── PHP Development Settings ────────────────────────────────
-php_flag  display_errors      On
-php_flag  display_startup_errors On
-php_value error_reporting     32767
+# ── PHP Error Settings ───────────────────────────────────────
 php_flag  log_errors           On
-php_value error_log            /Applications/XAMPP/xamppfiles/htdocs/research/storage/logs/error.log
+php_value error_log            /var/www/html/storage/logs/error.log
 
 # ── Security Headers ────────────────────────────────────────
 <IfModule mod_headers.c>
@@ -44,12 +41,12 @@ php_value error_log            /Applications/XAMPP/xamppfiles/htdocs/research/st
 </FilesMatch>
 
 # Block direct access to protected directories
-RedirectMatch 403 ^/research/vendor(/|$)
-RedirectMatch 403 ^/research/app(/|$)
-RedirectMatch 403 ^/research/config(/|$)
-RedirectMatch 403 ^/research/cron(/|$)
-RedirectMatch 403 ^/research/database(/|$)
-RedirectMatch 403 ^/research/storage(/|$)
+RedirectMatch 403 ^/vendor(/|$)
+RedirectMatch 403 ^/app(/|$)
+RedirectMatch 403 ^/config(/|$)
+RedirectMatch 403 ^/cron(/|$)
+RedirectMatch 403 ^/database(/|$)
+RedirectMatch 403 ^/storage(/|$)
 
 # ── Disable directory listing ───────────────────────────────
 Options -Indexes
@@ -57,10 +54,10 @@ Options -Indexes
 # ── Mod Rewrite (Front Controller) ──────────────────────────
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /research/
+    RewriteBase /
 
     # Allow direct access to existing files in public/ directory
-    RewriteCond %{REQUEST_URI} ^/research/public/
+    RewriteCond %{REQUEST_URI} ^/public/
     RewriteRule ^ - [L]
 
     # Allow direct access to real files and directories that exist

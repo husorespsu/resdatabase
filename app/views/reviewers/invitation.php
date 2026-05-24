@@ -40,14 +40,14 @@ $hasFile = !empty($review['invitation_file_path']);
 <!-- Breadcrumb -->
 <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/research/proposals">โครงการวิจัย</a></li>
+        <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/proposals">โครงการวิจัย</a></li>
         <li class="breadcrumb-item">
-            <a href="/research/proposals/<?= $review['proposal_id'] ?>">
+            <a href="<?= BASE_URL ?>/proposals/<?= $review['proposal_id'] ?>">
                 <?= htmlspecialchars($review['proposal_code'] ?? '') ?>
             </a>
         </li>
         <li class="breadcrumb-item">
-            <a href="/research/proposals/<?= $review['proposal_id'] ?>/assign-reviewers">ผู้ทรงคุณวุฒิ</a>
+            <a href="<?= BASE_URL ?>/proposals/<?= $review['proposal_id'] ?>/assign-reviewers">ผู้ทรงคุณวุฒิ</a>
         </li>
         <li class="breadcrumb-item active">หนังสือเชิญ</li>
     </ol>
@@ -121,7 +121,7 @@ $hasFile = !empty($review['invitation_file_path']);
                 <h6 class="mb-0 fw-bold"><i class="fas fa-file-signature me-2"></i>ข้อมูลหนังสือเชิญ</h6>
             </div>
             <div class="card-body">
-                <form method="POST" action="/research/reviews/<?= $review['id'] ?>/invitation"
+                <form method="POST" action="<?= BASE_URL ?>/reviews/<?= $review['id'] ?>/invitation"
                       enctype="multipart/form-data">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
 
@@ -166,7 +166,7 @@ $hasFile = !empty($review['invitation_file_path']);
                 <hr>
 
                 <!-- Generate PDF (GET link) -->
-                <a href="/research/reviews/<?= $review['id'] ?>/pdf"
+                <a href="<?= BASE_URL ?>/reviews/<?= $review['id'] ?>/pdf"
                    target="_blank"
                    class="btn btn-outline-danger w-100">
                     <i class="fas fa-file-pdf me-1"></i>สร้างและดูหนังสือเชิญ (PDF)

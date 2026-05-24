@@ -25,7 +25,7 @@
 <!-- Search Bar -->
 <div class="card border-0 shadow-sm mb-3">
     <div class="card-body py-3">
-        <form method="GET" action="/research/reviewers" class="row g-2 align-items-center">
+        <form method="GET" action="<?= BASE_URL ?>/reviewers" class="row g-2 align-items-center">
             <div class="col-md-6 col-lg-5">
                 <div class="input-group">
                     <span class="input-group-text bg-white">
@@ -36,7 +36,7 @@
                            value="<?= htmlspecialchars($search ?? '') ?>">
                     <button class="btn text-white" style="background:#003B6D;" type="submit">ค้นหา</button>
                     <?php if (!empty($search)): ?>
-                        <a href="/research/reviewers" class="btn btn-outline-secondary">ล้าง</a>
+                        <a href="<?= BASE_URL ?>/reviewers" class="btn btn-outline-secondary">ล้าง</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -138,7 +138,7 @@
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
-            <form id="reviewerForm" method="POST" action="/research/reviewers/store">
+            <form id="reviewerForm" method="POST" action="<?= BASE_URL ?>/reviewers/store">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
                 <div class="modal-body">
                     <div class="row g-3">
@@ -289,7 +289,7 @@ $(document).ready(function () {
     $('#btnAddReviewer').on('click', function () {
         resetForm();
         $('#modalTitleText').text('เพิ่มผู้ทรงคุณวุฒิ');
-        $('#reviewerForm').attr('action', '/research/reviewers/store');
+        $('#reviewerForm').attr('action', '<?= BASE_URL ?>/reviewers/store');
     });
 
     // Edit reviewer
@@ -297,7 +297,7 @@ $(document).ready(function () {
         const r = JSON.parse($(this).attr('data-reviewer'));
         populateForm(r);
         $('#modalTitleText').text('แก้ไขข้อมูลผู้ทรงคุณวุฒิ');
-        $('#reviewerForm').attr('action', '/research/reviewers/' + r.id + '/update');
+        $('#reviewerForm').attr('action', '<?= BASE_URL ?>/reviewers/' + r.id + '/update');
         new bootstrap.Modal(document.getElementById('reviewerModal')).show();
     });
 
@@ -319,7 +319,7 @@ $(document).ready(function () {
             cancelButtonText:   'ยกเลิก',
         }).then((result) => {
             if (result.isConfirmed) {
-                $.post('/research/reviewers/' + id + '/toggle', {
+                $.post('<?= BASE_URL ?>/reviewers/' + id + '/toggle', {
                     csrf_token: '<?= htmlspecialchars($csrfToken) ?>'
                 }, function (res) {
                     if (res.success) {

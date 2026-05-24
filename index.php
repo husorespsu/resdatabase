@@ -8,14 +8,16 @@ declare(strict_types=1);
 
 define('BASE_PATH', __DIR__);
 define('APP_PATH',  BASE_PATH . '/app');
-define('BASE_URL',  '/research');
 
-// Composer autoloader (for Google, PHPMailer, TCPDF, PhpSpreadsheet, Dotenv)
+// Load .env early so BASE_URL can be read from environment
 require_once BASE_PATH . '/vendor/autoload.php';
+$_dotenvEarly = Dotenv\Dotenv::createImmutable(BASE_PATH);
+$_dotenvEarly->safeLoad();
 
-// Load .env
-$dotenv = Dotenv\Dotenv::createImmutable(BASE_PATH);
-$dotenv->safeLoad();
+define('BASE_URL', rtrim($_ENV['APP_BASE_URL'] ?? '/research', '/'));
+
+// Composer autoloader already loaded above
+// .env already loaded above
 
 // ─────────────────────────────────────────────────────────────
 //  SESSION

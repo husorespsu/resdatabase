@@ -28,7 +28,7 @@ $paidTotal    = (float)($summary['paid_amount']    ?? 0);
         </h4>
         <p class="text-muted mb-0 small">จัดการการจ่ายค่าตอบแทนผู้ทรงคุณวุฒิพิจารณาโครงการวิจัย</p>
     </div>
-    <a href="/research/payments/export?<?= http_build_query($filters) ?>"
+    <a href="<?= BASE_URL ?>/payments/export?<?= http_build_query($filters) ?>"
        class="btn btn-success fw-semibold">
         <i class="fas fa-file-excel me-1"></i>Export Excel
     </a>
@@ -69,7 +69,7 @@ $paidTotal    = (float)($summary['paid_amount']    ?? 0);
 <!-- Filters -->
 <div class="card border-0 shadow-sm mb-4">
     <div class="card-body py-3">
-        <form method="GET" action="/research/payments" class="row g-2 align-items-end">
+        <form method="GET" action="<?= BASE_URL ?>/payments" class="row g-2 align-items-end">
             <div class="col-md-4">
                 <label class="form-label fw-semibold small mb-1">ค้นหา (รหัส/ชื่อโครงการ หรือ ผู้ทรงคุณวุฒิ)</label>
                 <input type="text" name="search" class="form-control form-control-sm"
@@ -98,7 +98,7 @@ $paidTotal    = (float)($summary['paid_amount']    ?? 0);
                 <button type="submit" class="btn btn-sm text-white" style="background:#003B6D;">
                     <i class="fas fa-search me-1"></i>ค้นหา
                 </button>
-                <a href="/research/payments" class="btn btn-outline-secondary btn-sm">ล้าง</a>
+                <a href="<?= BASE_URL ?>/payments" class="btn btn-outline-secondary btn-sm">ล้าง</a>
             </div>
         </form>
     </div>
@@ -274,7 +274,7 @@ $(document).ready(function () {
             (p.proposal_code || '') + '<br><span class="text-muted">' +
             (p.proposal_title || '') + '</span>'
         );
-        $('#paymentForm').attr('action', '/research/reviews/' + p.id + '/payment');
+        $('#paymentForm').attr('action', '<?= BASE_URL ?>/reviews/' + p.id + '/payment');
         $('#modalAmount').val(p.payment_amount || '');
         $('#modalDate').val(p.payment_date || '');
         $('#modalReference').val(p.payment_reference || '');

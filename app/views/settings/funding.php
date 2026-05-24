@@ -15,7 +15,7 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
         </h4>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 breadcrumb-psu">
-                <li class="breadcrumb-item"><a href="/research/">หน้าหลัก</a></li>
+                <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/">หน้าหลัก</a></li>
                 <li class="breadcrumb-item">การตั้งค่า</li>
                 <li class="breadcrumb-item active">จัดการแหล่งทุน</li>
             </ol>
@@ -130,7 +130,7 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
 <div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="modalCreateLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <form method="POST" action="/research/settings/funding/store" id="formCreate">
+            <form method="POST" action="<?= BASE_URL ?>/settings/funding/store" id="formCreate">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
                 <div class="modal-header text-white" style="background:#003B6D;">
                     <h5 class="modal-title" id="modalCreateLabel">
@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.addEventListener('click', function () {
             const data = this.dataset;
             const form = document.getElementById('formEdit');
-            form.action = '/research/settings/funding/' + data.id + '/update';
+            form.action = '<?= BASE_URL ?>/settings/funding/' + data.id + '/update';
             document.getElementById('editName').value         = data.name;
             document.getElementById('editOrganization').value = data.organization;
             document.getElementById('editDescription').value  = data.description;
@@ -338,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const container = document.getElementById('deleteForms');
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = '/research/settings/funding/' + id + '/delete';
+        form.action = '<?= BASE_URL ?>/settings/funding/' + id + '/delete';
         form.innerHTML = '<input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">';
         container.appendChild(form);
         form.submit();

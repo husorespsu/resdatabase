@@ -26,7 +26,7 @@ $roleColor = $roleColors[$user['role'] ?? 'user'] ?? 'secondary';
 <!-- Breadcrumb -->
 <nav aria-label="breadcrumb" class="mb-3">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/research/">หน้าหลัก</a></li>
+        <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/">หน้าหลัก</a></li>
         <li class="breadcrumb-item active">โปรไฟล์ของฉัน</li>
     </ol>
 </nav>
@@ -127,7 +127,7 @@ $roleColor = $roleColors[$user['role'] ?? 'user'] ?? 'secondary';
                 </h5>
             </div>
             <div class="card-body p-4">
-                <form method="POST" action="/research/profile/update"
+                <form method="POST" action="<?= BASE_URL ?>/profile/update"
                       enctype="multipart/form-data" id="profileForm">
                     <input type="hidden" name="csrf_token" value="<?= h($csrfToken) ?>">
                     <!-- Avatar hidden input (tied to the left-panel label) -->
@@ -189,7 +189,7 @@ $roleColor = $roleColors[$user['role'] ?? 'user'] ?? 'secondary';
                         <button type="submit" class="btn text-white fw-semibold px-4" style="background:#003B6D;">
                             <i class="fas fa-save me-1"></i>บันทึกข้อมูล
                         </button>
-                        <a href="/research/" class="btn btn-outline-secondary">ยกเลิก</a>
+                        <a href="<?= BASE_URL ?>/" class="btn btn-outline-secondary">ยกเลิก</a>
                     </div>
                 </form>
             </div>
@@ -212,7 +212,7 @@ $roleColor = $roleColors[$user['role'] ?? 'user'] ?? 'secondary';
                     </div>
                 </div>
                 <?php else: ?>
-                <form method="POST" action="/research/profile/change-password" id="pwForm">
+                <form method="POST" action="<?= BASE_URL ?>/profile/change-password" id="pwForm">
                     <input type="hidden" name="csrf_token" value="<?= h($csrfToken) ?>">
                     <div class="row g-3">
                         <div class="col-12">

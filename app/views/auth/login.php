@@ -27,7 +27,7 @@ ob_start();
 </div>
 
 <!-- Google Sign-in Button -->
-<a href="/research/auth/google"
+<a href="<?= BASE_URL ?>/auth/google"
    class="btn d-flex align-items-center justify-content-center gap-2 w-100 py-2 px-4"
    style="
        background: #ffffff;
@@ -63,7 +63,7 @@ ob_start();
         <span class="text-muted px-2" style="font-size:0.78rem;white-space:nowrap;">หรือเข้าสู่ระบบด้วยบัญชีผู้ดูแล</span>
         <hr class="flex-grow-1 m-0">
     </div>
-    <form method="POST" action="/research/auth/local-login" id="localLoginForm">
+    <form method="POST" action="<?= BASE_URL ?>/auth/local-login" id="localLoginForm">
         <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
         <div class="mb-2">
             <input type="text" name="username" class="form-control form-control-sm"

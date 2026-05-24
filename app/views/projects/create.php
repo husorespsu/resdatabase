@@ -9,12 +9,12 @@
     <h4 class="fw-bold mb-0" style="color:#003B6D;">
         <i class="fas fa-flask me-2"></i>เพิ่มโครงการวิจัย
     </h4>
-    <a href="/research/projects" class="btn btn-outline-secondary btn-sm">
+    <a href="<?= BASE_URL ?>/projects" class="btn btn-outline-secondary btn-sm">
         <i class="fas fa-arrow-left me-1"></i>กลับ
     </a>
 </div>
 
-<form method="POST" action="/research/projects/store" id="projectForm" novalidate>
+<form method="POST" action="<?= BASE_URL ?>/projects/store" id="projectForm" novalidate>
     <input type="hidden" name="csrf_token" value="<?= h($csrfToken) ?>">
 
     <!-- ── Section 1: ข้อเสนอโครงการที่เชื่อมโยง ──────────────────── -->
@@ -134,7 +134,7 @@
     <!-- ── Buttons ──────────────────────────────────────────────────── -->
     <div class="card border-0 shadow-sm mb-5">
         <div class="card-body d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <a href="/research/projects" class="btn btn-outline-secondary">
+            <a href="<?= BASE_URL ?>/projects" class="btn btn-outline-secondary">
                 <i class="fas fa-arrow-left me-1"></i>ยกเลิก
             </a>
             <button type="submit" class="btn btn-lg px-4 text-white" style="background:#003B6D;">

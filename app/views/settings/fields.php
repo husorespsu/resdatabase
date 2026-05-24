@@ -16,7 +16,7 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
         </h4>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 breadcrumb-psu">
-                <li class="breadcrumb-item"><a href="/research/dashboard">หน้าหลัก</a></li>
+                <li class="breadcrumb-item"><a href="<?= BASE_URL ?>/dashboard">หน้าหลัก</a></li>
                 <li class="breadcrumb-item"><a href="#">การตั้งค่า</a></li>
                 <li class="breadcrumb-item active">จัดการสาขาวิชา</li>
             </ol>
@@ -131,7 +131,7 @@ $csrfToken = $_SESSION['csrf_token'] ?? '';
 <div class="modal fade" id="modalCreateField" tabindex="-1" aria-labelledby="modalCreateFieldLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <form method="POST" action="/research/settings/fields/store" id="formCreateField">
+            <form method="POST" action="<?= BASE_URL ?>/settings/fields/store" id="formCreateField">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">
                 <div class="modal-header text-white" style="background:#003B6D;">
                     <h5 class="modal-title" id="modalCreateFieldLabel">
@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.btn-edit-field').forEach(function (btn) {
         btn.addEventListener('click', function () {
             const data = this.dataset;
-            document.getElementById('formEditField').action = '/research/settings/fields/' + data.id + '/update';
+            document.getElementById('formEditField').action = '<?= BASE_URL ?>/settings/fields/' + data.id + '/update';
             document.getElementById('editFieldCode').value    = data.code;
             document.getElementById('editFieldNameTh').value  = data.name_th;
             document.getElementById('editFieldNameEn').value  = data.name_en;
@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const container = document.getElementById('deleteFieldForms');
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = '/research/settings/fields/' + id + '/delete';
+        form.action = '<?= BASE_URL ?>/settings/fields/' + id + '/delete';
         form.innerHTML = '<input type="hidden" name="csrf_token" value="<?= htmlspecialchars($csrfToken) ?>">';
         container.appendChild(form);
         form.submit();
